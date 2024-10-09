@@ -24,7 +24,7 @@ Industry, research, and academic communities agree that Eclipse VOLTTRON is an i
 
 The technology’s adaptability has significantly expanded its promise. Users are applying the platform in novel ways not originally envisioned.
 
-Eclipse VOLTTRON is open source and publicly available from GitHub, and its ongoing development benefits from a highly collaborative approach among advocates, including PNNL, the U.S. Department of Energy, the Eclipse Foundation, and an active and passionate nationwide community of users.
+Eclipse VOLTTRON is open source and publicly available from [GitHub](https://github.com/eclipse-volttron), and its ongoing development benefits from a highly collaborative approach among advocates, including PNNL, the U.S. Department of Energy, the Eclipse Foundation, and an active and passionate nationwide community of users.
 
 The following articles provide examples of Eclipse VOLTTRON’s capabilities and accomplishments:
 

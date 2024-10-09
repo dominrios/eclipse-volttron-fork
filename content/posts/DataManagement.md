@@ -22,4 +22,4 @@ Devices of all kinds are producing vast amounts of data every minute of the day,
 
 **A Versatile, Safe Data Tool**
 
-The Eclipse VOLTTRON software platform and associated V-agent applications collect data and either analyze it locally or push to the cloud for storage and subsequent analysis. This technology’s strong security foundation helps ensure that data is protected from external threats.
+The Eclipse VOLTTRON software platform and associated applications collect data and either analyze it locally or push to the cloud for storage and subsequent analysis. This technology’s strong security foundation helps ensure that data is protected from external threats.

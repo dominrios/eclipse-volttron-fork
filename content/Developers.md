@@ -4,7 +4,7 @@ description: "Welcome to Eclipse VOLTTRON™"
 menu: main
 weight: 40
 image: images/MarketsImages/volttron_diagram.png 
-image_alt: "Hello!"
+image_alt: "Diagram of how the VOLTTRON platform operates"
 
 sidebar_left: DevelopersLeft
 
@@ -21,7 +21,7 @@ Eclipse VOLTTRON™ is an open source, secure, scalable, and distributed platfor
     <li>A configurable <strong>driver framework</strong> for collecting data from and sending control signals to buildings and devices</li>
     <li>Automatic data capture and retrieval through a <strong>historian framework</strong></li>
     <li>An extensible <strong>web framework</strong> allowing users and services to securely connect to the platform from anywhere</li>
-    <li>A <b>capability to interface</b> with simulation engines and applications to evaluate applications prior deployment.</li>
+    <li>A <b>capability to interface</b> with simulation engines and applications to evaluate applications prior to deployment.</li>
 
 </ul>
 
