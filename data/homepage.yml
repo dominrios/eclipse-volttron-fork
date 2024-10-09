@@ -21,7 +21,7 @@ items:
     - title: Cost Effective
       icon: fa-piggy-bank
       content: 
-        Eclipse VOLTTRON is open source software, can be hosted on inexpensive computing resources, and enables 
+        Eclipse VOLTTRON is open-source software, can be hosted on inexpensive computing resources, and enables 
         rapid delivery of innovations on a range of computing devices.
       URL: "highlights/costeffective"
 
