@@ -5,7 +5,7 @@
 */
 (function($) {
 
-    function debounce(func, delay) {
+    debounce = (func, delay) => {
         let debounceTimer;
         return function() {
             const context = this;
@@ -30,12 +30,12 @@
     };
     
     // Function to execute when a breakpoint is hit
-    function onBreakpointHit(width, offset) {
+    onBreakpointHit = (width, offset) => {
         // console.log(`Window has hit the width of ${width}px or lower. Using offset ${offset}px.`);
         calibrateAccomplishmentsSide(offset);
     }
     
-    function checkWindowWidth() {
+    checkWindowWidth = () => {
         const currentWidth = window.innerWidth;
         // console.log(`Current window width: ${currentWidth}`); // Log the current width for debugging
         const calibrationList = Object.keys(calibrationMap).map(Number).sort((a, b) => a - b);
@@ -108,11 +108,71 @@
     }
     checkWindowWidth()
 
-    
-    // Dealing with playlists
-    // const playlist_figures = document.getElementsByClassName("PlaylistFig")
-    // youtube_urls {"figure_id": url that equals figure_id}
-    
+    // Dealing with dynamically updating playlists
+    const playlistFigures = document.getElementsByClassName("PlaylistFig")
+    const api_key = "AIzaSyDJlC7hn05Y0wqANTt3C7i1whkg2re5R_w"
+
+    updatePlaylistThumbnail = async () => {
+        // Youtube URLs {"figure_id": playlist URL in href of figure}
+        let youtubeUrlMap = {}
+
+        // First, let's fill out our map
+        const playlistFigArray = Array.from(playlistFigures);
+        playlistFigArray.forEach((fig, index) => {
+            const aTag = fig.querySelector("a")
+            // If exists:
+            if (aTag && aTag.href) {
+                // Put the figure Id and playlist link as into map as kwarg
+                youtubeUrlMap[fig.id] = aTag.href
+            }
+        });
+
+        console.log(youtubeUrlMap)
+
+        // Extract the playlist ID from the URL
+        extractPlaylistId = (url) => {
+            const urlObj = new URL(url);
+            return urlObj.searchParams.get('list');
+        }
+
+        // Getting the first video ID from the playlist
+        getFirstVideoId = async(apiKey, playlistId) => {
+            const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=1&playlistId=${playlistId}&key=${apiKey}`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    // console.log('Full response:', response);
+                    const errorData = await response.json();
+                    // console.error('Error fetching playlist items:', errorData);
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                if (data.items && data.items.length > 0) {
+                    return data.items[0].snippet.resourceId.videoId;
+                } else {
+                    throw new Error('No videos found in the playlist.');
+                }
+            } catch (error) {
+                console.error('Error fetching playlist items:', error);
+            }
+        }
+
+        // Loop through our map and fetch the first video ID for each playlist
+        // Then we use video id and plug into first frame ulr, and update img src
+        for (const [figId, playlistURL] of Object.entries(youtubeUrlMap)) {
+            const playlistId = extractPlaylistId(playlistURL);
+            const firstVideoId = await getFirstVideoId(api_key, playlistId);
+            const firstFrame = `https://i.ytimg.com/vi/${firstVideoId}/maxresdefault.jpg`
+            const figure = document.getElementById(figId)
+            const figureImg = figure.querySelector("img")
+            figureImg.src= firstFrame
+        }
+    }
+
+    // Update all playlist thumbnails
+    updatePlaylistThumbnail();
 
 
 
